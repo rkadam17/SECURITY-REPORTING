@@ -6,7 +6,8 @@ cast(bi.[VBRK_BillingDate] as datetime) as "Calendar Day"
 ,bp.[VBPA_EndUser] as "End User"
 ,bi.[VBRK_SalesOrg] as "Sales Org"
 ,bi.[VBRK_SoldToParty] as "Sold To"
-,[VBPA_ExternalSalesRep1] as "Y1 Sales Rep"
+,bp.[VBPA_ExternalSalesRep1] as "Y1 Sales Rep"
+,bp.[kna1_ExternalSalesRep1Desc] as "Y1 Sales Rep Desc"
 ,bi.[Credit_Debits_Billing_USD] as "Billing Deb & Credit"
 ,bi.[Net_Billing_USD] as "Net Billing"
 ,bi.[VBRP_MaterialNo] as "Material ID"
@@ -25,5 +26,5 @@ on mso.[Sales_Organization]+mso.[Material] = bi.[VBRK_SalesOrg]+bi.[VBRP_Materia
 where
 	bi.[VBRK_BillingDate] >= '01/01/2019'
 	and  bi.[VBRK_SalesOrg] in ('C510')
-	and bp.[VBPA_EndUser] = '0001066193';
+	and bp.[VBPA_EndUser] = '0001066193'
        
