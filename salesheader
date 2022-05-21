@@ -1,0 +1,10 @@
+SELECT
+
+[VBAK_SalesDocument],
+[VBAK_CustReference] AS "PO number",
+[VBAK_ProjectName] as "Project Name"
+[VBAK_ProjectLocation] as "Project City"
+[VBAK_ProjectState]  as "Project State"
+
+FROM [cur_mdm].[DimSalesHeader]
+where [VBAK_SalesOrg] = 'C510'
