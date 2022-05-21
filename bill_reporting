@@ -1,0 +1,35 @@
+Select top 5
+
+cast (bi.[VBRK_BillingDate] as datetime) as "Calendar Day"
+,bi.[VBAP_SalesDocument] as  "Sales doc #"
+,bp.[VBPA_EndUser] as "End User"
+,bi.[VBRK_SalesOrg] as "Sales Org"
+,bi.[VBRK_SoldToParty] as "Sold To"
+,bp.[VBPA_ExternalSalesRep1] as "Y1 Sales Rep"
+,bi.[Credit_Debits_Billing_USD] as "Billing Deb & Credit"
+,bi.[Net_Billing_USD] as "Net Billing"
+,bi.[VBRP_MaterialNo] as "Material ID"
+,bi.[VBRP_ItemDescription] as "Material Description"
+,mso.[Product_Line_Description] as "Product Line"
+,mso.[Product_Class_Description] as "Product Hierarchy 2"
+,mso.[Product_Group_Description] as "Product Hierarchy 3"
+,mso.[Product_Family_Description] as "Product Hierarchy 4"
+,bi.[VBRP_Project] as "Project"
+,bh.[VBRK_ProjectLocation] as "Project City"
+,bh.[VBRK_ProjectState] as  "Project State"
+,bi.[VBRP_BillingDoc] as "Invoice Number"
+,bi.[VBRP_BillQtyInSku] as "QTY"
+
+from [cur_sdb].[FactBillingItem] bi
+left join [cur_mdm].[DimSalesPartnerBilling] bp
+on bp.[VBPA_SDDocument]+bp.[VBPA_Item] = bi.[VBRP_BillingDoc]+bi.[VBRP_Item]
+left join [cur_mdm].[DimBillingHeader]  bh
+on bh.[VBRK_BillingDoc] = bi.[VBRP_BillingDoc]
+left join [cur_mdm].[DimMaterialSalesOrg] mso 
+on mso.[Sales_Organization]+mso.[Material] = bi.[VBRK_SalesOrg]+bi.[VBRP_MaterialNo]
+
+where
+	bi.[VBRK_BillingDate] >= '01/01/2019'
+	and  bi.[VBRK_SalesOrg] in ('C510')
+	and bp.[VBPA_EndUser] is not null
+       
