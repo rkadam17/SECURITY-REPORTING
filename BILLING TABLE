@@ -2,20 +2,28 @@ Select
 
 cast(bi.[VBRK_BillingDate] as datetime) as "Calendar Day"
 ,bi.[VBAP_SalesDocument] as  "Sales doc #"
-,bi.[VBAP_SalesItem] as "SO Line"
+--,bi.[VBAP_SalesItem] as "SO Line"
 ,bp.[VBPA_EndUser] as "End User"
 ,bi.[VBRK_SalesOrg] as "Sales Org"
 ,bi.[VBRK_SoldToParty] as "Sold To"
 ,bp.[VBPA_ExternalSalesRep1] as "Y1 Sales Rep"
-,bp.[kna1_ExternalSalesRep1Desc] as "Y1 Sales Rep Desc"
+--,bp.[kna1_ExternalSalesRep1Desc] as "Y1 Sales Rep Desc"
 ,bi.[Credit_Debits_Billing_USD] as "Billing Deb & Credit"
 ,bi.[Net_Billing_USD] as "Net Billing"
 ,bi.[VBRP_MaterialNo] as "Material ID"
 ,bi.[VBRP_ItemDescription] as "Material Description"
 ,mso.[Product_Line_Description] as "Product Line"
+--product hier 2
+--product hier 3
+--product hier 4
+--project
+--proj city
+--proj state
+--invoice number
+
 ,bi.[VBRP_BillQtyInSku] as "QTY"
-,bi.[VBRK_PONumber] as "PO Number"
-,bi.[vbep_ScheduleLineDeliveryDate] as "First Schedule Line Delivery Date"
+--,bi.[VBRK_PONumber] as "PO Number"
+--,bi.[vbep_ScheduleLineDeliveryDate] as "First Schedule Line Delivery Date"
 
 from [cur_sdb].[FactBillingItem] bi
 left join [cur_mdm].[DimSalesPartnerBilling] bp
